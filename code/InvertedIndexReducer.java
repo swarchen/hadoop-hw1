@@ -1,17 +1,17 @@
 package invertedindex;
 
-import java.io.IOException;
-
-import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapreduce.Reducer;
-
-public class InvertedIndexReducer extends Reducer<Text,IntWritable,Text,IntWritable> {
-	Text result = new Text();  
+ 
+import java.io.IOException;  
+import org.apache.hadoop.io.Text;  
+import org.apache.hadoop.mapreduce.Reducer;  
+  
+public class InvertedIndexReducer extends Reducer  
+{  
+    Text result = new Text();  
       
     @Override  
-    public void reduce(Text key, Iterable<IntWritable> values, Context context)
-		throws IOException, InterruptedException {  
+    public void reduce(Text key, Iterable values, Context context)  
+            throws IOException, InterruptedException {  
         StringBuffer fileList = new StringBuffer();  
         for(Text value:values)  
         {  
@@ -20,4 +20,4 @@ public class InvertedIndexReducer extends Reducer<Text,IntWritable,Text,IntWrita
         result.set(fileList.toString());  
         context.write(key, result);  
     }  
-}
+}  

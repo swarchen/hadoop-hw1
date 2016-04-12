@@ -1,12 +1,11 @@
 package invertedindex;
 
-import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.Text;
+import java.io.IOException;  
+import org.apache.hadoop.io.Text;  
 import org.apache.hadoop.mapreduce.Reducer;  
-
-public class InvertedIndexCombiner extends Reducer<Text, IntWritable> {
-	
-	Text info = new Text();  
+  
+public class InvertedIndexCombiner extends Reducer{  
+    Text info = new Text();  
       
     @Override  
     public void reduce(Text key, Iterable values, Context context)  
@@ -24,5 +23,5 @@ public class InvertedIndexCombiner extends Reducer<Text, IntWritable> {
         // 重新設置 key 值為單詞  
         key.set(items[0]);  
         context.write(key, info);  
-    }
-}
+    }  
+}  
